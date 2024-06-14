@@ -137,7 +137,7 @@ public class Model extends Observable {
      *  Empty spaces are stored as null.
      * */
     public static boolean emptySpaceExists(Board b) {
-
+        // TODO: Fill in this function.
         for (int col = 0; col < b.size(); col++) {
             for (int row = 0; row < b.size(); row++) {
                 if (b.tile(col, row) == null) {
@@ -178,6 +178,25 @@ public class Model extends Observable {
      */
     public static boolean atLeastOneMoveExists(Board b) {
         // TODO: Fill in this function.
+        if (emptySpaceExists(b)) {
+            return true;
+        }
+        for (int col = 0; col < b.size() - 1; col++) {
+            for (int row = 0; row < b.size(); row++) {
+                int val = b.tile(col, row).value();
+                if (val == b.tile(col + 1, row).value()) {
+                    return true;
+                }
+            }
+        }
+        for (int row = 0; row < b.size() - 1; row++) {
+            for (int col = 0; col < b.size(); col++) {
+                int val = b.tile(col, row).value();
+                if (val == b.tile(col, row + 1).value()) {
+                    return true;
+                }
+            }
+        }
         return false;
     }
 
